@@ -1,4 +1,4 @@
-'Convert CSV file to vw format. Headers can be skipped with argv[4] == true.'
+'
 '-1 for label index if no label in file'
 
 import sys
@@ -31,7 +31,7 @@ def construct_line( label, line ):
 
 # ---
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(description = 'Convert CSV file to vw format.')
 parser.add_argument("input_file", help = "path to csv input file")
 parser.add_argument("output_file", help = "path to output file")
 
@@ -44,12 +44,8 @@ parser.add_argument("-s", "--skip_headers", help = "specify if there are headers
 
 args = parser.parse_args()
 
-input_file = sys.argv[1]
-output_file = sys.argv[2]
-
-
-i = open( input_file )
-o = open( output_file, 'w' )
+i = open( args.input_file )
+o = open( args.output_file, 'w' )
 
 reader = csv.reader( i )
 if args.skip_headers:
